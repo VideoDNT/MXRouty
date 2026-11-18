@@ -1,0 +1,14 @@
+name: Feature request / Wunsch
+description: An idea for MXRouty. / Eine Idee für MXRouty.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What should MXRouty do? / Was soll MXRouty können?
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Use case / Anwendungsfall

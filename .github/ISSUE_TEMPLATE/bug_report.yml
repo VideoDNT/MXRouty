@@ -1,0 +1,44 @@
+name: Bug report / Fehlerbericht
+description: Something does not work as expected. / Etwas funktioniert nicht wie erwartet.
+labels: [bug]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: MXRouty version
+      placeholder: "1.0"
+    validations:
+      required: true
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options:
+        - Windows 10
+        - Windows 11
+        - Linux Mint 22 / Ubuntu 24.04
+        - Other Linux
+    validations:
+      required: true
+  - type: input
+    id: devices
+    attributes:
+      label: MIDI devices involved
+      placeholder: "Launchpad MK2 → loopMIDI Port"
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce / Schritte
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected vs. actual / Erwartet vs. tatsächlich
+    validations:
+      required: true
+  - type: textarea
+    id: log
+    attributes:
+      label: Log excerpt (mxrouty.log, only when started from source)
+      render: text
