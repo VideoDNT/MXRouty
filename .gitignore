@@ -1,0 +1,19 @@
+# Laufzeit / lokal (nie ins Repo)
+.venv/
+__pycache__/
+*.pyc
+settings.json
+*.log
+_to_delete/
+_Backup/
+presets/
+Installer/
+tools/
+# Build-Zwischenstaende
+build/
+dist/
+Build/_temp/
+# Projektinterne Doku / Werkzeughinweise
+docs/WISSEN*.md
+docs/session-log.md
+CLAUDE.md
