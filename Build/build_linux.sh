@@ -10,7 +10,7 @@ ROOT=$(cd "$(dirname "$0")/.." && pwd)
 VERSION=$(sed -n 's/^VERSION = "\([0-9.]*\)".*/\1/p' "$ROOT/version.py")
 [ -n "$VERSION" ] || { echo "VERSION nicht gefunden (version.py)"; exit 1; }
 W=${WORK:-/tmp/mxrouty_build_linux}
-DEB="$ROOT/Installer/mxrouty_${VERSION}_amd64.deb"
+DEB="$ROOT/Installer/MXRouty_${VERSION//./_}_linux_amd64.deb"   # Namensstandard seit 18.11.2026 (Paketname im System bleibt klein: mxrouty)
 echo "Version $VERSION -> $(basename "$DEB")"
 
 # 1. Build-venv (gleiche Staende wie Windows-Build, 04.11.2026)
@@ -38,6 +38,16 @@ import sys
 from PIL import Image
 Image.open(sys.argv[1]).resize((256, 256), Image.LANCZOS).save(sys.argv[2])
 PY
+# Lizenztexte (FOSS-Pflicht, 18.11.2026): /usr/share/doc/mxrouty/Lizenzen + copyright
+mkdir -p "$P/usr/share/doc/mxrouty/Lizenzen"
+cp "$ROOT/LICENSE" "$ROOT/THIRD-PARTY-NOTICES.md" "$ROOT/Build/licenses/"* "$P/usr/share/doc/mxrouty/Lizenzen/"
+cat > "$P/usr/share/doc/mxrouty/copyright" <<CPR
+MXRouty - MIDI routing with channel filter and remap
+Source: https://github.com/VideoDNT/MXRouty
+Copyright: MXRouty contributors
+License: GPL-3.0-or-later (see Lizenzen/LICENSE)
+Bundled: Qt 6 / PySide6 (LGPL-3.0), python-rtmidi + RtMidi (MIT), Python (PSF) - see Lizenzen/
+CPR
 cat > "$P/usr/share/applications/mxrouty.desktop" <<DESK
 [Desktop Entry]
 Type=Application

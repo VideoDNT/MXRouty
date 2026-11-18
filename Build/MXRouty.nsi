@@ -6,7 +6,7 @@
 ; Bauen:  makensis -DVERSION=1.0 -DDIST=<dist/MXRouty> -DOUTFILE=<Setup> Build\MXRouty.nsi
 ;   (build_wine.sh liest die Version aus version.py)
 ;   erwartet dist\MXRouty aus PyInstaller (Build\MXRouty.spec), Icon liegt in _internal\Icon.
-;   Ergebnis: Installer\MXRouty_Setup_1_0.exe - Version hinten, "_" statt "."
+;   Ergebnis: Installer\MXRouty_1_0_win_amd64.exe - Version mit "_" statt ".", Zielsystem im Namen (Standard 18.11.2026)
 ;
 ; Laeuft MXRouty noch, bricht das Setup mit Hinweis ab (Schreib-Oeffnen der exe
 ; als Sperrtest). Eine vorhandene alte Version wird KOMPLETT entfernt (ihr
@@ -265,6 +265,7 @@ Section "MXRouty"
   kein_alter:
   ; Reste einer aelteren Installation ohne Deinstaller
   RMDir /r "$INSTDIR\_internal"
+  RMDir /r "$INSTDIR\Lizenzen"
 
   SetOutPath "$INSTDIR"
   File /r "${DIST}/*"
@@ -306,6 +307,7 @@ Section "Uninstall"
 
   ; nur die eigenen Dateien entfernen - nie den ganzen Ordner blind loeschen
   RMDir /r "$INSTDIR\_internal"
+  RMDir /r "$INSTDIR\Lizenzen"
   Delete "$INSTDIR\${EXENAME}"
   Delete "$INSTDIR\Uninstall.exe"
   RMDir "$INSTDIR"
